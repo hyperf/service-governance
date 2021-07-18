@@ -11,10 +11,7 @@ declare(strict_types=1);
  */
 namespace Hyperf\ServiceGovernance;
 
-use Hyperf\ServiceGovernance\Listener\RegisterDriverListener;
 use Hyperf\ServiceGovernance\Listener\RegisterServiceListener;
-use Hyperf\ServiceGovernance\Register\ConsulAgent;
-use Hyperf\ServiceGovernance\Register\ConsulAgentFactory;
 
 class ConfigProvider
 {
@@ -22,11 +19,9 @@ class ConfigProvider
     {
         return [
             'dependencies' => [
-                ConsulAgent::class => ConsulAgentFactory::class,
                 IPReaderInterface::class => IPReader::class,
             ],
             'listeners' => [
-                RegisterDriverListener::class,
                 RegisterServiceListener::class,
             ],
             'annotations' => [
