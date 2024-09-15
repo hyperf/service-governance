@@ -109,6 +109,10 @@ class RegisterServiceListener implements ListenerInterface
             if (in_array($host, ['0.0.0.0', 'localhost'])) {
                 $host = $this->ipReader->read();
             }
+            /* 新增重定向host地址（一般程序位于DOCKER中取不到宿主机真实地址可用） */
+            if (! empty($server['redirect_host'])) {
+                $host = $server['redirect_host'];
+            }
             if (! filter_var($host, FILTER_VALIDATE_IP)) {
                 throw new InvalidArgumentException(sprintf('Invalid host %s', $host));
             }
